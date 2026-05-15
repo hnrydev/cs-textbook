@@ -13,6 +13,7 @@ Open `index.html` in a browser to use the textbook.
 - Persistent local audio reader controls using the browser speech synthesis API
 - Curriculum-informed expansion based on ACM/IEEE/AAAI CS2023 and university CS core patterns
 - Chapter-level references for further study from university and curriculum sources
+- A 20-week full CS course map with outcomes, projects, and references
 
 ## Audio Reader
 

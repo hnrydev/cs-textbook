@@ -362,6 +362,68 @@ p {
   margin-top: 18px;
 }
 
+.course-band > p {
+  max-width: 850px;
+  margin-top: 8px;
+}
+
+.course-plan {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.course-module {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 18px;
+}
+
+.course-week {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.course-module h3 {
+  margin-bottom: 6px;
+}
+
+.course-module p {
+  margin-bottom: 10px;
+}
+
+.course-module dl {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.course-module dt {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.course-module dd {
+  color: var(--muted);
+}
+
+.course-module a {
+  color: var(--primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.course-module a:hover {
+  text-decoration: underline;
+}
+
 .reading-grid article,
 .concept-card,
 .section-card {
@@ -820,5 +882,9 @@ pre {
     width: 88px;
     height: 88px;
     font-size: 0.78rem;
+  }
+
+  .course-module {
+    grid-template-columns: 1fr;
   }
 }

@@ -876,8 +876,103 @@ const researchReferences = {
   mit006: ["MIT OCW 6.006 Introduction to Algorithms", "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/"],
   berkeley70: ["UC Berkeley CS 70 Discrete Mathematics and Probability Theory", "https://www2.eecs.berkeley.edu/Courses/CS70/"],
   stanfordCore: ["Stanford Computer Science Core Requirements", "https://www.cs.stanford.edu/bs-core-requirements"],
-  cmuCore: ["CMU Computer Science Undergraduate Program", "https://coursecatalog.web.cmu.edu/schools-colleges/schoolofcomputerscience/undergraduatecomputerscience/"]
+  cmuCore: ["CMU Computer Science Undergraduate Program", "https://coursecatalog.web.cmu.edu/schools-colleges/schoolofcomputerscience/undergraduatecomputerscience/"],
+  ossu: ["OSSU Computer Science Curriculum", "https://github.com/ossu/computer-science"],
+  teachYourselfCS: ["Teach Yourself Computer Science", "https://teachyourselfcs.com/"],
+  missingSemester: ["MIT Missing Semester", "https://missing.csail.mit.edu/"],
+  cs50: ["Harvard CS50x", "https://cs50.harvard.edu/x/"],
+  berkeley61a: ["Berkeley CS 61A Structure and Interpretation of Computer Programs", "https://people.eecs.berkeley.edu/~bh/cs61A.html"],
+  berkeley61b: ["Berkeley CS 61B Data Structures", "https://www2.eecs.berkeley.edu/Courses/CS61B/"],
+  berkeley162: ["Berkeley CS 162 Operating Systems and Systems Programming", "https://rise.cs.berkeley.edu/course/cs162-operating-systems-systems-programming/"],
+  cmu15213: ["CMU 15-213 Introduction to Computer Systems", "https://www.cs.cmu.edu/afs/cs/academic/class/15213-s24/www/schedule.html"],
+  berkeley186: ["Berkeley CS 186 Introduction to Database Systems", "https://dsf.berkeley.edu/dbcourse/"],
+  mitDistributed: ["MIT 6.824 / 6.5840 Distributed Systems", "https://pdos.csail.mit.edu/6.824/"],
+  stanford229: ["Stanford CS229 Machine Learning", "https://cs229.stanford.edu/"],
+  berkeley188: ["Berkeley CS 188 Artificial Intelligence", "https://inst.eecs.berkeley.edu/~cs188/"]
 };
+
+const coursePlan = [
+  {
+    weeks: "Weeks 1-2",
+    title: "Computational Thinking, Tools, and Programming",
+    summary: "Start with abstraction, decomposition, basic programming, the shell, editors, Git, debugging, and the habit of making work reproducible.",
+    outcomes: "Explain what a program represents; use functions and control flow; navigate a terminal; commit work with Git.",
+    project: "Build a command-line study-card tool that saves cards, searches cards, and tracks review counts.",
+    references: [researchReferences.cs50, researchReferences.berkeley61a, researchReferences.missingSemester]
+  },
+  {
+    weeks: "Weeks 3-4",
+    title: "Discrete Math, Logic, Proof, and Probability",
+    summary: "Learn propositions, predicates, induction, sets, relations, counting, graphs, modular arithmetic, probability, conditioning, expectation, and variance.",
+    outcomes: "Write direct and inductive proofs; model a problem as a graph or relation; compute simple probabilities and expectations.",
+    project: "Create an interactive proof notebook with worked examples for induction, graph reachability, and Bayes' theorem.",
+    references: [researchReferences.mitMath, researchReferences.berkeley70]
+  },
+  {
+    weeks: "Weeks 5-6",
+    title: "Data Structures and Algorithmic Analysis",
+    summary: "Study arrays, linked structures, stacks, queues, hash tables, trees, heaps, graphs, asymptotic analysis, invariants, and amortized cost.",
+    outcomes: "Choose structures by operation mix; analyze Big O; explain correctness using invariants.",
+    project: "Implement a small graph library with BFS, DFS, shortest path, topological sort, and tests.",
+    references: [researchReferences.berkeley61b, researchReferences.mit006, researchReferences.mitAlgorithms]
+  },
+  {
+    weeks: "Weeks 7-8",
+    title: "Algorithm Design Paradigms",
+    summary: "Move from basic data structures to divide and conquer, greedy algorithms, dynamic programming, graph algorithms, network flow, randomized algorithms, and lower bounds.",
+    outcomes: "Identify a suitable paradigm; write a recurrence; prove greedy safety; compare exact, approximate, and randomized methods.",
+    project: "Build a route planner that compares BFS, Dijkstra, A*, and dynamic programming on different map assumptions.",
+    references: [researchReferences.mitAlgorithms, researchReferences.mit006, researchReferences.cmuCore]
+  },
+  {
+    weeks: "Weeks 9-10",
+    title: "Computer Systems and Architecture",
+    summary: "Trace programs into machine code, memory layout, arithmetic, caching, linking, exceptional control flow, processes, and system-level I/O.",
+    outcomes: "Explain why memory hierarchy matters; reason about pointers and layout; connect C-like code to machine behavior.",
+    project: "Write and profile a memory-intensive program, then improve it by changing layout and access patterns.",
+    references: [researchReferences.cmu15213, researchReferences.stanfordCore]
+  },
+  {
+    weeks: "Weeks 11-12",
+    title: "Operating Systems, Concurrency, and Networking",
+    summary: "Study processes, threads, synchronization, scheduling, virtual memory, file systems, sockets, reliability, and security boundaries.",
+    outcomes: "Explain race conditions; use locks carefully; describe virtual memory; reason about network failure.",
+    project: "Build a concurrent key-value server with logging, basic persistence, and a test that exposes a race condition.",
+    references: [researchReferences.berkeley162, researchReferences.stanfordCore]
+  },
+  {
+    weeks: "Weeks 13-14",
+    title: "Databases, Information Retrieval, and Data Systems",
+    summary: "Learn relational algebra, SQL, schema design, normalization, indexing, query plans, transactions, recovery, and consistency tradeoffs.",
+    outcomes: "Design a relational schema; write joins; explain indexes and transactions; distinguish logical and physical design.",
+    project: "Build a searchable course catalog with normalized tables, indexes, full-text search, and transaction-safe updates.",
+    references: [researchReferences.berkeley186, researchReferences.teachYourselfCS]
+  },
+  {
+    weeks: "Weeks 15-16",
+    title: "Programming Languages, Compilers, and Verification",
+    summary: "Study grammars, parsing, interpreters, type systems, semantics, program analysis, contracts, property testing, and formal verification.",
+    outcomes: "Parse a small language; explain type checking; write properties and invariants; understand the boundary between testing and proof.",
+    project: "Implement a tiny expression language with variables, type checks, evaluation, and property-based tests.",
+    references: [researchReferences.cs2023, researchReferences.berkeley61a, researchReferences.mitMath]
+  },
+  {
+    weeks: "Weeks 17-18",
+    title: "AI, Machine Learning, Data Science, and Causality",
+    summary: "Cover search, planning, uncertainty, Bayes nets, supervised learning, unsupervised learning, generalization, evaluation, causal assumptions, and responsible data work.",
+    outcomes: "Separate AI search from ML; explain train/test splits; identify confounding; evaluate models with appropriate metrics.",
+    project: "Build a small classifier and an audit report describing data provenance, bias risks, and evaluation limitations.",
+    references: [researchReferences.berkeley188, researchReferences.stanford229, researchReferences.cs2023]
+  },
+  {
+    weeks: "Weeks 19-20",
+    title: "Distributed Systems, Security, Ethics, and Capstone",
+    summary: "Finish with partial failure, replication, consensus, security threat models, cryptography, privacy, accessibility, professional responsibility, and a capstone system.",
+    outcomes: "Explain why distributed agreement is hard; write a threat model; discuss ethical constraints as engineering constraints.",
+    project: "Capstone: design and document a fault-aware, secure, data-backed web service with tests, observability notes, and an ethics review.",
+    references: [researchReferences.mitDistributed, researchReferences.missingSemester, researchReferences.cs2023]
+  }
+];
 
 const chapterEnhancements = {
   foundations: {
@@ -888,7 +983,7 @@ const chapterEnhancements = {
         bullets: ["Ask what is represented, what operations are allowed, and what costs dominate.", "Separate the abstract problem from the implementation that happens to solve it.", "Look for invariants: the facts that make progress safe."]
       }
     ],
-    references: [researchReferences.cs2023, researchReferences.stanfordCore, researchReferences.cmuCore]
+    references: [researchReferences.cs2023, researchReferences.ossu, researchReferences.teachYourselfCS, researchReferences.stanfordCore, researchReferences.cmuCore]
   },
   data: {
     sections: [
@@ -898,7 +993,7 @@ const chapterEnhancements = {
         bullets: ["A format defines structure; an encoding defines meaning.", "Metadata tells software how to interpret raw bytes.", "Many security bugs come from two components disagreeing about representation."]
       }
     ],
-    references: [researchReferences.cs2023]
+    references: [researchReferences.cs2023, researchReferences.cs50]
   },
   algorithms: {
     sections: [
@@ -923,7 +1018,7 @@ const chapterEnhancements = {
         bullets: ["Choose arrays for compact indexed access.", "Choose trees for ordered search and ranges.", "Choose graphs when relationships are first-class.", "Choose hash tables when key lookup dominates and ordering is secondary."]
       }
     ],
-    references: [researchReferences.mit006, researchReferences.mitAlgorithms]
+    references: [researchReferences.berkeley61b, researchReferences.mit006, researchReferences.mitAlgorithms]
   },
   "logic-proof": {
     sections: [
@@ -963,7 +1058,7 @@ const chapterEnhancements = {
         bullets: ["Coordinate systems are choices of basis.", "Matrix products are composed transformations.", "High-dimensional geometry explains similarity search and embeddings."]
       }
     ],
-    references: [researchReferences.stanfordCore, researchReferences.cs2023]
+    references: [researchReferences.stanford229, researchReferences.cs2023, researchReferences.stanfordCore]
   },
   "advanced-algorithms": {
     sections: [
@@ -983,7 +1078,7 @@ const chapterEnhancements = {
         bullets: ["Sequential memory access is usually friendlier to caches.", "Parallelism can be limited by communication and contention.", "The memory hierarchy is a performance model, not just a hardware diagram."]
       }
     ],
-    references: [researchReferences.stanfordCore, researchReferences.cmuCore]
+    references: [researchReferences.cmu15213, researchReferences.stanfordCore, researchReferences.cmuCore]
   },
   os: {
     sections: [
@@ -993,7 +1088,7 @@ const chapterEnhancements = {
         bullets: ["Virtualization turns physical scarcity into manageable abstractions.", "Scheduling trades responsiveness, throughput, and fairness.", "Isolation is both a correctness and security mechanism."]
       }
     ],
-    references: [researchReferences.stanfordCore, researchReferences.cmuCore]
+    references: [researchReferences.berkeley162, researchReferences.stanfordCore, researchReferences.cmuCore]
   },
   languages: {
     sections: [
@@ -1003,7 +1098,7 @@ const chapterEnhancements = {
         bullets: ["Type systems move some checks before runtime.", "Memory management trades control against safety.", "Syntax matters because programs are read more often than they are written."]
       }
     ],
-    references: [researchReferences.cs2023, researchReferences.stanfordCore]
+    references: [researchReferences.cs2023, researchReferences.berkeley61a, researchReferences.stanfordCore]
   },
   databases: {
     sections: [
@@ -1013,7 +1108,7 @@ const chapterEnhancements = {
         bullets: ["Indexes speed reads but slow writes and consume space.", "Transactions protect invariants across changes.", "Query planners are compilers for data access."]
       }
     ],
-    references: [researchReferences.cs2023]
+    references: [researchReferences.berkeley186, researchReferences.cs2023]
   },
   networks: {
     sections: [
@@ -1023,7 +1118,7 @@ const chapterEnhancements = {
         bullets: ["Names, addresses, routes, and sessions are different abstractions.", "Reliability can be implemented above unreliable transport.", "Security must authenticate meaning, not just move bytes."]
       }
     ],
-    references: [researchReferences.cs2023, researchReferences.stanfordCore]
+    references: [researchReferences.berkeley162, researchReferences.cs2023, researchReferences.stanfordCore]
   },
   "information-theory": {
     sections: [
@@ -1043,7 +1138,7 @@ const chapterEnhancements = {
         bullets: ["Measurement choices define what can be learned.", "Selection bias can survive large sample sizes.", "Causal claims require assumptions beyond correlation."]
       }
     ],
-    references: [researchReferences.cs2023, researchReferences.stanfordCore]
+    references: [researchReferences.stanford229, researchReferences.berkeley188, researchReferences.cs2023, researchReferences.stanfordCore]
   },
   ai: {
     sections: [
@@ -1053,7 +1148,7 @@ const chapterEnhancements = {
         bullets: ["A model compresses patterns from examples into parameters.", "Generalization is tested on cases not used for training.", "Evaluation must match the real task, not just a convenient benchmark."]
       }
     ],
-    references: [researchReferences.cs2023, researchReferences.cmuCore]
+    references: [researchReferences.stanford229, researchReferences.berkeley188, researchReferences.cs2023, researchReferences.cmuCore]
   },
   verification: {
     sections: [
@@ -1073,7 +1168,7 @@ const chapterEnhancements = {
         bullets: ["Replication improves availability but creates coordination problems.", "Consistency models define what reads are allowed to observe.", "Timeouts are guesses, not proof of failure."]
       }
     ],
-    references: [researchReferences.cs2023, researchReferences.stanfordCore, researchReferences.cmuCore]
+    references: [researchReferences.mitDistributed, researchReferences.cs2023, researchReferences.stanfordCore, researchReferences.cmuCore]
   },
   professional: {
     sections: [
@@ -1101,6 +1196,7 @@ const nav = document.querySelector("#chapterNav");
 const template = document.querySelector("#chapterTemplate");
 const searchInput = document.querySelector("#searchInput");
 const readPageButton = document.querySelector("#readPageButton");
+const coursePlanRoot = document.querySelector("#coursePlan");
 const readerToggle = document.querySelector("#readerToggle");
 const readerPanel = document.querySelector("#readerPanel");
 const voiceSelect = document.querySelector("#voiceSelect");
@@ -1170,6 +1266,33 @@ function createReferencesPanel(chapter, panel) {
     .map(([label, url]) => `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`)
     .join("");
   panel.innerHTML = `<h3>References and Further Study</h3><ul>${items}</ul>`;
+}
+
+function renderCoursePlan() {
+  if (!coursePlanRoot) return;
+  coursePlan.forEach((module) => {
+    const card = document.createElement("article");
+    card.className = "course-module";
+    const links = module.references
+      .map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`)
+      .join(" | ");
+    card.innerHTML = `
+      <div class="course-week">${module.weeks}</div>
+      <div>
+        <h3>${module.title}</h3>
+        <p>${module.summary}</p>
+        <dl>
+          <dt>Learning outcomes</dt>
+          <dd>${module.outcomes}</dd>
+          <dt>Project</dt>
+          <dd>${module.project}</dd>
+          <dt>References</dt>
+          <dd>${links}</dd>
+        </dl>
+      </div>
+    `;
+    coursePlanRoot.appendChild(card);
+  });
 }
 
 function chapterText(chapter) {
@@ -1403,6 +1526,7 @@ function updateActiveNav() {
 }
 
 buildReaderItems();
+renderCoursePlan();
 render();
 populateStartOptions();
 populateVoices();

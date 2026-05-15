@@ -3,10 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Readable CS textbook aligned with CS2023-style breadth: foundations through AI, systems, theory, and ethics—diagrams, learning objectives, interactive demos, code snippets, and external course links. Press / to focus search.">
     <title>Computer Science: A Complete High-Level Textbook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="app-shell">
       <aside class="sidebar" aria-label="Textbook navigation">
         <div class="brand">
@@ -25,14 +30,15 @@
         <nav id="chapterNav" class="chapter-nav" aria-label="Chapters"></nav>
       </aside>
 
-      <main class="content">
+      <main class="content" id="main-content" tabindex="-1">
         <section class="hero" id="top">
           <div class="hero-copy">
-            <p class="eyebrow">Beginner friendly, academically structured, domain complete</p>
-            <h1>Computer Science, from first principles to modern systems.</h1>
+            <p class="eyebrow">Structured like a degree map — readable in any order</p>
+            <h1>Computer science, from representations and algorithms to systems, AI, and society.</h1>
             <p>
-              A readable online textbook that compresses the core ideas of computer science into
-              objective explanations, visual models, and practical code examples.
+              Each chapter states the central idea first, names the abstractions that make the topic
+              tractable, adds diagrams and quick definitions, and closes with short code you can run or adapt.
+              Use objectives and info boxes to skim; use sections when you want depth.
             </p>
             <div class="hero-actions">
               <a class="btn" href="#chapter-foundations">Start reading</a>
@@ -66,22 +72,26 @@
             <strong>Local</strong>
             <span>browser audio reader</span>
           </div>
+          <div>
+            <strong aria-hidden="true">/</strong>
+            <span>press slash to focus search</span>
+          </div>
         </section>
 
         <section class="overview-band">
-          <h2>How To Read This Textbook</h2>
+          <h2>How to read this textbook</h2>
           <div class="reading-grid">
             <article>
-              <h3>1. Build the mental model</h3>
-              <p>Each chapter starts with the central idea, then names the abstractions that make the topic manageable.</p>
+              <h3>1. Read objectives, then diagrams</h3>
+              <p>Chapter objectives tell you what mental moves you should be able to make. Figures compress relationships that prose would take pages to restate.</p>
             </article>
             <article>
-              <h3>2. Connect domains</h3>
-              <p>Computer science is not a set of isolated subjects. Algorithms shape databases, operating systems, AI, graphics, and security.</p>
+              <h3>2. Treat topics as one fabric</h3>
+              <p>The same themes recur: representation, cost models, interfaces, failure, and evidence. Networking changes how you think about databases; algorithms change how you think about ML infrastructure.</p>
             </article>
             <article>
-              <h3>3. Use code as evidence</h3>
-              <p>Code examples are short and language-focused. They are included to make abstract ideas testable.</p>
+              <h3>3. Stress-test ideas with code</h3>
+              <p>Programs are executable models. Small examples turn “sounds right” into something you can observe, break, and measure.</p>
             </article>
           </div>
         </section>
@@ -91,11 +101,11 @@
           <div class="reading-grid">
             <article>
               <h3>University core</h3>
-              <p>Built around the common sequence: programming, discrete math, data structures, algorithms, computer organization, systems, theory, probability, and engineering practice.</p>
+              <p>Aligned with common undergrad rails: programming fluency, discrete structures, data structures, algorithms, machines and memory, operating systems, theory, probability, and sustained project practice.</p>
             </article>
             <article>
               <h3>CS2023 knowledge areas</h3>
-              <p>Coverage now maps to algorithmic foundations, architecture, AI, data management, programming languages, graphics, HCI, math/stat foundations, networking, OS, parallel/distributed computing, security, society, software, and platforms.</p>
+              <p>The ACM/IEEE/AAAI CS2023 guidelines organize the field into seventeen areas—from algorithmic foundations, programming languages, systems, AI, data, networking, security, HCI, graphics, math/stats, parallel and distributed computing, platforms, software engineering, society/ethics, and more—mirroring how this book clusters topics.</p>
             </article>
             <article>
               <h3>Depth path</h3>
@@ -161,12 +171,15 @@
         <p class="chapter-summary"></p>
         <div class="concept-grid"></div>
         <div class="figure-slot"></div>
+        <div class="interactives-slot"></div>
         <div class="sections"></div>
         <div class="code-panel"></div>
         <div class="references-panel"></div>
       </article>
     </template>
 
+    <script src="pedagogy.js"></script>
+    <script src="interactives.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

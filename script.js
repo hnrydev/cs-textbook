@@ -3,7 +3,7 @@ const chapters = [
     id: "foundations",
     kicker: "Part I - Foundations",
     title: "What Computer Science Studies",
-    summary: "Computer science studies computation: what can be represented, what can be automated, how efficiently it can be done, and how reliable systems can be built from simple rules.",
+    summary: "Computation asks what can be represented, automated, measured for cost, and trusted under failure—bridging mathematics, engineered artifacts, and human institutions that adopt them.",
     concepts: [
       ["Information", "Anything that can be distinguished, measured, stored, transmitted, or used to decide."],
       ["Computation", "A rule-following process that transforms input into output."],
@@ -64,7 +64,7 @@ const chapters = [
     summary: "An algorithm is a precise method for solving a class of problems. Complexity analysis estimates how runtime or memory grows as input size grows, which is often more important than timing one small example.",
     concepts: [
       ["Correctness", "The algorithm always produces the required output for valid inputs."],
-      ["Big O", "A notation for upper-bounding growth while ignoring constant factors."],
+      ["Big O", "Asymptotic upper bound on growth; ignores multiplicative constants and logarithmic bases."],
       ["Search", "Finding an item or state that satisfies a condition."],
       ["Optimization", "Finding the best solution under defined constraints."]
     ],
@@ -148,7 +148,7 @@ const chapters = [
     id: "os",
     kicker: "Part III - Systems",
     title: "Operating Systems",
-    summary: "An operating system manages hardware and provides controlled abstractions: processes, threads, files, virtual memory, devices, permissions, and system calls.",
+    summary: "Operating systems virtualize finite hardware into dependable services: scheduling shares CPUs fairly or by policy, virtual memory gives isolation while mapping to physical RAM and backing store, file systems name persistent bytes, and kernel mode enforces permissions around devices and memory.",
     concepts: [
       ["Process", "A running program with its own address space and resources."],
       ["Thread", "A schedulable path of execution within a process."],
@@ -252,7 +252,7 @@ const chapters = [
       {
         heading: "Consistency and Scale",
         body: "Distributed data systems must handle partial failure, network delay, replication, and conflicting updates. Stronger guarantees often cost latency or availability under failure.",
-        bullets: ["ACID emphasizes reliable transactions.", "CAP describes tradeoffs under network partitions.", "Caching improves speed but can make freshness harder."]
+        bullets: ["ACID groups updates into atomic, durable transactions on a typical single-database deployment.", "The CAP framing highlights consistency–availability tensions during partitions—definitions differ from vendor summaries; real systems tune guarantees along continua.", "Caching improves read speed but can complicate freshness and coherence."]
       }
     ],
     code: [
@@ -275,7 +275,7 @@ const chapters = [
       {
         heading: "Layering",
         body: "Each network layer solves a narrower problem and offers services to the layer above. HTTP does not need to know the physics of fiber optics; it relies on lower layers to move bytes.",
-        bullets: ["DNS maps names to addresses.", "TCP provides reliable ordered streams.", "UDP provides lighter datagrams.", "TLS adds encryption and authentication."]
+        bullets: ["DNS maps names to addresses.", "TCP typically presents a reliable, ordered byte stream.", "UDP sends connectionless, best-effort datagrams.", "TLS adds confidentiality, integrity, and endpoint authentication on top of TCP."]
       },
       {
         heading: "Distributed Reality",
@@ -321,7 +321,7 @@ const chapters = [
     id: "ai",
     kicker: "Part VII - Intelligence",
     title: "Artificial Intelligence and Machine Learning",
-    summary: "AI builds systems that perform tasks associated with intelligent behavior. Machine learning focuses on systems that improve performance from data rather than only from hand-written rules.",
+    summary: "Artificial intelligence spans search, representation, learning, and deployment concerns emphasized in CS2023’s AI area: classical planning and uncertainty meet statistical ML; shipping models requires evaluation under shift, monitoring for drift, and responsible-use constraints—not leaderboard scores alone.",
     concepts: [
       ["Model", "A parameterized function that maps inputs to predictions or decisions."],
       ["Training", "Adjusting model parameters using data and an objective."],
@@ -370,7 +370,7 @@ const chapters = [
       }
     ],
     code: [
-      ["HTML Canvas", "const canvas = document.querySelector(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\nctx.fillStyle = \"#2563eb\";\nctx.fillRect(20, 20, 120, 80);\nctx.strokeStyle = \"#111827\";\nctx.strokeRect(20, 20, 120, 80);"]
+      ["HTML Canvas", "const canvas = document.querySelector(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\nctx.fillStyle = \"#1a1a1a\";\nctx.fillRect(20, 20, 120, 80);\nctx.strokeStyle = \"#737373\";\nctx.strokeRect(20, 20, 120, 80);"]
     ]
   },
   {
@@ -381,15 +381,15 @@ const chapters = [
     concepts: [
       ["Automaton", "A formal machine model with states and transition rules."],
       ["Turing machine", "A simple abstract model powerful enough to represent general computation."],
-      ["Decidability", "Whether an algorithm can always answer a question correctly in finite time."],
-      ["P versus NP", "A major open question about efficient solving versus efficient checking."]
+      ["Decidability", "Whether some algorithm halts with the correct YES/NO answer on every input—for decision problems."],
+      ["P versus NP", "A major open question: whether every decision problem whose YES instances have polynomial-time verifiable proofs is also solvable in polynomial time."]
     ],
     figure: { type: "layers", title: "Theoretical Ladder", items: ["Finite automata", "Context-free grammars", "Turing machines", "Decidability", "Complexity classes"] },
     sections: [
       {
         heading: "Models With Limits",
         body: "Formal models are intentionally simple. Their value is that they make proof possible. If a problem cannot be solved in a simple universal model, adding a faster processor will not remove that impossibility.",
-        bullets: ["Regular languages can be recognized by finite automata.", "Some problems are undecidable.", "NP problems have solutions that can be checked efficiently."]
+        bullets: ["Regular languages can be recognized by finite automata.", "Some problems are undecidable.", "NP captures decision problems with polynomial-time verifiable YES witnesses (informally, certificates)—see precise textbook definitions before doing proofs."]
       },
       {
         heading: "Why Theory Matters",
@@ -433,7 +433,7 @@ const chapters = [
     id: "professional",
     kicker: "Part IX - Practice",
     title: "Ethics, Society, and Professional Practice",
-    summary: "Computer science changes institutions, labor, privacy, knowledge, safety, and power. Professional practice requires technical competence plus responsibility for consequences.",
+    summary: "Computing reshapes institutions, labor, privacy, safety, and power; CS2023’s Society, Ethics, and Profession strand expects ethics, policy literacy, and accountability alongside technical skill—not as an optional footnote.",
     concepts: [
       ["Privacy", "Control over personal information and inference."],
       ["Fairness", "Attention to unjust performance differences and social impact."],
@@ -771,7 +771,7 @@ chapters.splice(chapters.findIndex((chapter) => chapter.id === "professional"), 
       {
         heading: "Why CS Studies It",
         body: "Quantum computing clarifies the relationship between physics and computation. It also affects cryptography, complexity theory, simulation of quantum systems, and the design of future hardware and algorithms.",
-        bullets: ["Shor's algorithm threatens widely used public-key cryptography if large fault-tolerant machines exist.", "Grover's algorithm gives a quadratic search speedup.", "Post-quantum cryptography designs classical systems resistant to quantum attacks."]
+        bullets: ["Shor's algorithm could break schemes whose security rests on integer factorization or certain discrete logarithms—assuming sufficiently large fault-tolerant quantum computers exist.", "Grover's algorithm yields an asymptotic quadratic speedup for unstructured search; symmetric-key standards revisit margins accordingly.", "Post-quantum cryptography standardizes classical primitives believed resistant to known quantum attacks."]
       },
       {
         heading: "Alternative Models",
@@ -815,7 +815,7 @@ chapters.splice(chapters.findIndex((chapter) => chapter.id === "professional"), 
     id: "distributed",
     kicker: "Part IX - Scale",
     title: "Distributed Systems, Cloud Computing, and Reliability",
-    summary: "Distributed systems coordinate multiple machines that can fail independently. This field explains cloud services, replicated databases, consensus, queues, microservices, and large-scale reliability engineering.",
+    summary: "Distributed systems coordinate state and computation across unreliable networks—central to CS2023 networking and parallel/distributed areas. Partial failure, latency, and partitions force explicit replication, consistency definitions, consensus where needed, queueing, idempotent APIs, and observability so operators can reconstruct causality.",
     concepts: [
       ["Partial failure", "One component fails while others keep running."],
       ["Consensus", "A protocol for machines to agree despite failures."],
@@ -1191,6 +1191,32 @@ Object.entries(chapterEnhancements).forEach(([id, enhancement]) => {
   if (enhancement.references) chapter.references = enhancement.references;
 });
 
+function mergeChapterPedagogy() {
+  const src = typeof window !== "undefined" ? window.CHAPTER_PEDAGOGY : null;
+  if (!src) return;
+  Object.entries(src).forEach(([id, pedagogy]) => {
+    const chapter = chapters.find((item) => item.id === id);
+    if (!chapter) return;
+    if (pedagogy.objectives) chapter.objectives = pedagogy.objectives;
+    if (pedagogy.figureCaption && chapter.figure) chapter.figure.caption = pedagogy.figureCaption;
+    if (pedagogy.extraFigures) chapter.extraFigures = pedagogy.extraFigures;
+    if (pedagogy.sections) {
+      pedagogy.sections.forEach((patch) => {
+        const sec = chapter.sections.find((s) => s.heading === patch.matchHeading);
+        if (!sec) return;
+        if (patch.subtitle) sec.subtitle = patch.subtitle;
+        if (patch.callouts) sec.callouts = patch.callouts;
+      });
+    }
+  });
+}
+
+mergeChapterPedagogy();
+
+if (typeof window.mergeChapterInteractives === "function") {
+  window.mergeChapterInteractives(chapters);
+}
+
 const book = document.querySelector("#book");
 const nav = document.querySelector("#chapterNav");
 const template = document.querySelector("#chapterTemplate");
@@ -1217,10 +1243,32 @@ function slugTitle(chapter) {
   return `chapter-${chapter.id}`;
 }
 
+function figuresForChapter(chapter) {
+  const primary = chapter.figure ? [chapter.figure] : [];
+  const extra = chapter.extraFigures?.length ? chapter.extraFigures : [];
+  return primary.concat(extra);
+}
+
+function defaultCalloutTitle(variant) {
+  switch (variant) {
+    case "key-idea":
+      return "Key idea";
+    case "tip":
+      return "Try this";
+    case "caution":
+      return "Watch out";
+    default:
+      return "Note";
+  }
+}
+
 function createFigure(figure) {
   const wrapper = document.createElement("div");
   wrapper.className = "figure";
-  wrapper.innerHTML = `<div class="figure-title">${figure.title}</div>`;
+  const title = document.createElement("div");
+  title.className = "figure-title";
+  title.textContent = figure.title;
+  wrapper.appendChild(title);
   const body = document.createElement("div");
   body.className = figure.type;
   figure.items.forEach((item) => {
@@ -1229,7 +1277,68 @@ function createFigure(figure) {
     body.appendChild(node);
   });
   wrapper.appendChild(body);
+  if (figure.caption) {
+    const caption = document.createElement("p");
+    caption.className = "figure-caption";
+    caption.textContent = figure.caption;
+    wrapper.appendChild(caption);
+  }
   return wrapper;
+}
+
+function appendChapterObjectives(chapter, summaryEl) {
+  if (!chapter.objectives || chapter.objectives.length === 0) return;
+  const aside = document.createElement("aside");
+  aside.className = "chapter-objectives";
+  aside.setAttribute("aria-label", "Chapter objectives");
+  const heading = document.createElement("h4");
+  heading.textContent = "Learning objectives";
+  aside.appendChild(heading);
+  const list = document.createElement("ul");
+  chapter.objectives.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.appendChild(li);
+  });
+  aside.appendChild(list);
+  summaryEl.insertAdjacentElement("afterend", aside);
+}
+
+function appendSectionCard(container, section) {
+  const card = document.createElement("section");
+  card.className = "section-card";
+  const h3 = document.createElement("h3");
+  h3.textContent = section.heading;
+  card.appendChild(h3);
+  if (section.subtitle) {
+    const sub = document.createElement("p");
+    sub.className = "section-subtitle";
+    sub.textContent = section.subtitle;
+    card.appendChild(sub);
+  }
+  const body = document.createElement("p");
+  body.textContent = section.body;
+  card.appendChild(body);
+  (section.callouts || []).forEach((callout) => {
+    const variant = callout.variant || "note";
+    const aside = document.createElement("aside");
+    aside.className = `callout callout-${variant}`;
+    const h5 = document.createElement("h5");
+    h5.textContent = callout.title || defaultCalloutTitle(variant);
+    aside.appendChild(h5);
+    const p = document.createElement("p");
+    p.textContent = callout.body;
+    aside.appendChild(p);
+    card.appendChild(aside);
+  });
+  const ul = document.createElement("ul");
+  section.bullets.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+  card.appendChild(ul);
+  container.appendChild(card);
 }
 
 function createCodePanel(chapter, panel) {
@@ -1295,15 +1404,25 @@ function renderCoursePlan() {
   });
 }
 
+function sectionSpeech(section) {
+  const subtitle = section.subtitle ? `${section.subtitle} ` : "";
+  const callouts = (section.callouts || []).map((c) => `${c.title || ""} ${c.body}`.trim()).join(" ");
+  return `${section.heading}. ${subtitle}${section.body} ${section.bullets.join(". ")}.${callouts ? ` ${callouts}` : ""}`;
+}
+
 function chapterText(chapter) {
-  const sectionText = chapter.sections
-    .map((section) => `${section.heading}. ${section.body} ${section.bullets.join(". ")}.`)
+  const objectives = chapter.objectives?.length ? chapter.objectives.join(". ") + ". " : "";
+  const sectionText = chapter.sections.map((section) => sectionSpeech(section)).join(" ");
+  const captions = figuresForChapter(chapter)
+    .map((f) => f.caption)
+    .filter(Boolean)
     .join(" ");
-  return `${chapter.title}. ${chapter.summary} ${sectionText}`;
+  const captionBlock = captions ? `${captions} ` : "";
+  return `${chapter.title}. ${objectives}${chapter.summary} ${captionBlock}${sectionText}`;
 }
 
 function sectionText(chapter, section) {
-  return `${chapter.title}. ${section.heading}. ${section.body} ${section.bullets.join(". ")}.`;
+  return `${chapter.title}. ${sectionSpeech(section)}`;
 }
 
 function buildReaderItems() {
@@ -1448,10 +1567,28 @@ function render() {
 
     const node = template.content.firstElementChild.cloneNode(true);
     node.id = id;
-    node.dataset.search = `${chapter.title} ${chapter.summary} ${chapter.concepts.flat().join(" ")} ${chapter.sections.map((section) => `${section.heading} ${section.body} ${section.bullets.join(" ")}`).join(" ")}`.toLowerCase();
+    const objectivesSearch = chapter.objectives?.join(" ") ?? "";
+    const figureCaptionSearch = figuresForChapter(chapter)
+      .flatMap((f) => [f.title, f.caption].filter(Boolean))
+      .join(" ");
+    const sectionSearch = chapter.sections
+      .map((section) => {
+        const co = (section.callouts || []).map((c) => `${c.title || ""} ${c.body}`).join(" ");
+        return `${section.heading} ${section.subtitle || ""} ${section.body} ${section.bullets.join(" ")} ${co}`;
+      })
+      .join(" ");
+    const interactiveSearch =
+      chapter.interactives?.length ?
+        `interactive demo animation ${chapter.interactives.map((x) => x.type).join(" ")}`
+      : "";
+
+    node.dataset.search =
+      `${chapter.title} ${chapter.summary} ${objectivesSearch} ${figureCaptionSearch} ${interactiveSearch} ${chapter.concepts.flat().join(" ")} ${sectionSearch}`.toLowerCase();
     node.querySelector(".chapter-kicker").textContent = chapter.kicker;
     node.querySelector("h2").textContent = chapter.title;
-    node.querySelector(".chapter-summary").textContent = chapter.summary;
+    const summaryEl = node.querySelector(".chapter-summary");
+    summaryEl.textContent = chapter.summary;
+    appendChapterObjectives(chapter, summaryEl);
 
     const conceptGrid = node.querySelector(".concept-grid");
     chapter.concepts.forEach(([term, definition]) => {
@@ -1461,16 +1598,16 @@ function render() {
       conceptGrid.appendChild(card);
     });
 
-    node.querySelector(".figure-slot").appendChild(createFigure(chapter.figure));
+    const figureSlot = node.querySelector(".figure-slot");
+    figuresForChapter(chapter).forEach((fig) => figureSlot.appendChild(createFigure(fig)));
+
+    const interactSlot = node.querySelector(".interactives-slot");
+    if (typeof window.mountChapterInteractives === "function") {
+      window.mountChapterInteractives(chapter, interactSlot);
+    }
 
     const sections = node.querySelector(".sections");
-    chapter.sections.forEach((section) => {
-      const card = document.createElement("section");
-      card.className = "section-card";
-      const bullets = section.bullets.map((item) => `<li>${item}</li>`).join("");
-      card.innerHTML = `<h3>${section.heading}</h3><p>${section.body}</p><ul>${bullets}</ul>`;
-      sections.appendChild(card);
-    });
+    chapter.sections.forEach((section) => appendSectionCard(sections, section));
 
     const audioButton = node.querySelector(".audio-button");
     const chapterStart = readerItems.findIndex((item) => item.chapterIndex === index);
@@ -1530,6 +1667,15 @@ renderCoursePlan();
 render();
 populateStartOptions();
 populateVoices();
+
+document.addEventListener("keydown", (event) => {
+  const tag = event.target?.tagName;
+  if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.key === "/" && tag !== "INPUT" && tag !== "TEXTAREA" && tag !== "SELECT") {
+    event.preventDefault();
+    searchInput?.focus();
+  }
+});
 
 searchInput.addEventListener("input", filterChapters);
 document.addEventListener("scroll", updateActiveNav, { passive: true });

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Computer Science: A Complete High-Level Textbook</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Textbook navigation">
+        <div class="brand">
+          <span class="brand-mark">CS</span>
+          <div>
+            <strong>Computer Science</strong>
+            <span>Complete High-Level Textbook</span>
+          </div>
+        </div>
+
+        <label class="search">
+          <span>Search topics</span>
+          <input id="searchInput" type="search" placeholder="algorithms, AI, databases..." autocomplete="off">
+        </label>
+
+        <nav id="chapterNav" class="chapter-nav" aria-label="Chapters"></nav>
+      </aside>
+
+      <main class="content">
+        <section class="hero" id="top">
+          <div class="hero-copy">
+            <p class="eyebrow">Beginner friendly, academically structured, domain complete</p>
+            <h1>Computer Science, from first principles to modern systems.</h1>
+            <p>
+              A readable online textbook that compresses the core ideas of computer science into
+              objective explanations, visual models, and practical code examples.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#chapter-foundations">Start reading</a>
+              <button class="btn secondary" id="readPageButton" type="button" aria-pressed="false">
+                <span class="speaker-icon" aria-hidden="true"></span>
+                Read from beginning
+              </button>
+            </div>
+          </div>
+          <div class="hero-figure" aria-label="Map of computer science domains">
+            <div class="core-node">Computation</div>
+            <div class="orbit o1">Algorithms</div>
+            <div class="orbit o2">Systems</div>
+            <div class="orbit o3">Data</div>
+            <div class="orbit o4">AI</div>
+            <div class="orbit o5">Theory</div>
+            <div class="orbit o6">Security</div>
+          </div>
+        </section>
+
+        <section class="tool-strip" aria-label="Learning tools">
+          <div>
+            <strong id="chapterCount">0</strong>
+            <span>chapters</span>
+          </div>
+          <div>
+            <strong id="sectionCount">0</strong>
+            <span>readable sections</span>
+          </div>
+          <div>
+            <strong>Local</strong>
+            <span>browser audio reader</span>
+          </div>
+        </section>
+
+        <section class="overview-band">
+          <h2>How To Read This Textbook</h2>
+          <div class="reading-grid">
+            <article>
+              <h3>1. Build the mental model</h3>
+              <p>Each chapter starts with the central idea, then names the abstractions that make the topic manageable.</p>
+            </article>
+            <article>
+              <h3>2. Connect domains</h3>
+              <p>Computer science is not a set of isolated subjects. Algorithms shape databases, operating systems, AI, graphics, and security.</p>
+            </article>
+            <article>
+              <h3>3. Use code as evidence</h3>
+              <p>Code examples are short and language-focused. They are included to make abstract ideas testable.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="overview-band">
+          <h2>Curriculum Backbone</h2>
+          <div class="reading-grid">
+            <article>
+              <h3>University core</h3>
+              <p>Built around the common sequence: programming, discrete math, data structures, algorithms, computer organization, systems, theory, probability, and engineering practice.</p>
+            </article>
+            <article>
+              <h3>CS2023 knowledge areas</h3>
+              <p>Coverage now maps to algorithmic foundations, architecture, AI, data management, programming languages, graphics, HCI, math/stat foundations, networking, OS, parallel/distributed computing, security, society, software, and platforms.</p>
+            </article>
+            <article>
+              <h3>Depth path</h3>
+              <p>Early chapters build intuition; later chapters introduce proof, models, abstraction boundaries, complexity, reliability, and research-level ways of thinking.</p>
+            </article>
+          </div>
+        </section>
+
+        <div id="book"></div>
+      </main>
+    </div>
+
+    <aside class="reader-dock" aria-label="Audio reader controls">
+      <button class="reader-toggle" id="readerToggle" type="button" aria-expanded="true" title="Audio reader">
+        <span class="speaker-icon" aria-hidden="true"></span>
+      </button>
+      <div class="reader-panel" id="readerPanel">
+        <div class="reader-header">
+          <strong>Audio Reader</strong>
+          <span id="readerStatus">Ready</span>
+        </div>
+        <label>
+          Voice
+          <select id="voiceSelect"></select>
+        </label>
+        <label>
+          Start at
+          <select id="startSelect"></select>
+        </label>
+        <label>
+          Pace <span id="rateValue">1.00x</span>
+          <input id="rateControl" type="range" min="0.65" max="1.35" step="0.05" value="1">
+        </label>
+        <div class="reader-actions">
+          <button id="readerPlay" type="button">Start</button>
+          <button id="readerPause" type="button">Pause</button>
+          <button id="readerStop" type="button">Stop</button>
+        </div>
+      </div>
+    </aside>
+
+    <template id="chapterTemplate">
+      <article class="chapter">
+        <header class="chapter-header">
+          <div>
+            <p class="chapter-kicker"></p>
+            <h2></h2>
+          </div>
+          <button class="audio-button" type="button" aria-pressed="false">
+            <span class="speaker-icon" aria-hidden="true"></span>
+            <span>Listen</span>
+          </button>
+        </header>
+        <p class="chapter-summary"></p>
+        <div class="concept-grid"></div>
+        <div class="figure-slot"></div>
+        <div class="sections"></div>
+        <div class="code-panel"></div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>

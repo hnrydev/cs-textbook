@@ -869,6 +869,233 @@ chapters.splice(chapters.findIndex((chapter) => chapter.id === "professional"), 
   }
 );
 
+const researchReferences = {
+  cs2023: ["ACM/IEEE/AAAI CS2023 Knowledge Areas", "https://csed.acm.org/knowledge-areas/"],
+  mitMath: ["MIT OCW 6.042J Mathematics for Computer Science", "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/"],
+  mitAlgorithms: ["MIT OCW 6.046J Introduction to Algorithms", "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/"],
+  mit006: ["MIT OCW 6.006 Introduction to Algorithms", "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/"],
+  berkeley70: ["UC Berkeley CS 70 Discrete Mathematics and Probability Theory", "https://www2.eecs.berkeley.edu/Courses/CS70/"],
+  stanfordCore: ["Stanford Computer Science Core Requirements", "https://www.cs.stanford.edu/bs-core-requirements"],
+  cmuCore: ["CMU Computer Science Undergraduate Program", "https://coursecatalog.web.cmu.edu/schools-colleges/schoolofcomputerscience/undergraduatecomputerscience/"]
+};
+
+const chapterEnhancements = {
+  foundations: {
+    sections: [
+      {
+        heading: "What Changes Between Beginner and Expert Understanding",
+        body: "At the beginner level, CS looks like learning languages and tools. At the expert level, it becomes the study of representations, invariants, cost models, interfaces, and failure modes. The same program can be understood as text, syntax tree, control flow graph, machine instructions, memory behavior, network behavior, and user-facing system.",
+        bullets: ["Ask what is represented, what operations are allowed, and what costs dominate.", "Separate the abstract problem from the implementation that happens to solve it.", "Look for invariants: the facts that make progress safe."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.stanfordCore, researchReferences.cmuCore]
+  },
+  data: {
+    sections: [
+      {
+        heading: "Representation Is a Contract",
+        body: "Bits have no meaning by themselves. Meaning appears when a community, program, or protocol agrees on an encoding. This is why the same byte pattern can be an integer, a character, an instruction, a color, or compressed data depending on the contract used to interpret it.",
+        bullets: ["A format defines structure; an encoding defines meaning.", "Metadata tells software how to interpret raw bytes.", "Many security bugs come from two components disagreeing about representation."]
+      }
+    ],
+    references: [researchReferences.cs2023]
+  },
+  algorithms: {
+    sections: [
+      {
+        heading: "The Four-Part Algorithm Answer",
+        body: "Strong algorithm courses train a consistent habit: state the algorithm, illustrate it, prove why it is correct, and analyze its cost. Code alone is not enough because code can obscure the reason the method works.",
+        bullets: ["Description: what the algorithm does at each step.", "Example: how it behaves on a concrete input.", "Correctness: why every valid input is handled.", "Complexity: how time and memory grow."]
+      },
+      {
+        heading: "Lower Bounds and Impossibility",
+        body: "Algorithm design is also about knowing what cannot be improved. Comparison sorting has a lower bound because sorting must distinguish among n factorial possible input orders. This style of argument prevents wasted effort chasing impossible speedups under a fixed model.",
+        bullets: ["Upper bounds come from algorithms.", "Lower bounds come from proofs about all algorithms in a model.", "Changing the model can change what is possible."]
+      }
+    ],
+    references: [researchReferences.mitAlgorithms, researchReferences.mit006]
+  },
+  structures: {
+    sections: [
+      {
+        heading: "Data Structures Are Algorithms Made Persistent",
+        body: "A data structure is not just storage; it is a collection of promises about future operations. Balanced trees promise logarithmic ordered updates. Hash tables promise expected constant lookup. Heaps promise fast access to the next priority item. The structure is chosen by the operations the future will ask for.",
+        bullets: ["Choose arrays for compact indexed access.", "Choose trees for ordered search and ranges.", "Choose graphs when relationships are first-class.", "Choose hash tables when key lookup dominates and ordering is secondary."]
+      }
+    ],
+    references: [researchReferences.mit006, researchReferences.mitAlgorithms]
+  },
+  "logic-proof": {
+    sections: [
+      {
+        heading: "Proof Techniques as Debugging Tools",
+        body: "Proof is not separate from programming. Direct proof resembles tracing a straight-line argument. Contradiction exposes impossible assumptions. Induction mirrors recursion and loops. Counterexamples are minimal failing tests for mathematical claims.",
+        bullets: ["Use induction when a structure is built from smaller structures.", "Use contradiction when assuming failure creates an impossible state.", "Use counterexamples to sharpen definitions quickly."]
+      }
+    ],
+    references: [researchReferences.mitMath, researchReferences.berkeley70]
+  },
+  math: {
+    sections: [
+      {
+        heading: "The Math Dependency Graph",
+        body: "CS math is not a random checklist. Logic supports proof and verification. Sets and relations support types, databases, and graphs. Counting supports probability and complexity. Number theory supports cryptography. Linear algebra supports graphics and AI. Probability supports randomized algorithms, statistics, reliability, and machine learning.",
+        bullets: ["Proof gives guarantees.", "Counting gives scale.", "Probability gives uncertainty.", "Linear algebra gives geometry and high-dimensional representation."]
+      }
+    ],
+    references: [researchReferences.mitMath, researchReferences.berkeley70]
+  },
+  "counting-combinatorics": {
+    sections: [
+      {
+        heading: "How Counting Enters Runtime",
+        body: "When a recursive algorithm branches, counting estimates the recursion tree. When a randomized algorithm samples, counting estimates success probability. When a cryptographic key is chosen, counting estimates brute-force resistance. Counting is the bridge between a finite program and a huge space of possibilities.",
+        bullets: ["Recurrences count work across recursive levels.", "The pigeonhole principle proves collisions must occur.", "Bijections turn a hard count into an easier equivalent count."]
+      }
+    ],
+    references: [researchReferences.mitMath, researchReferences.berkeley70]
+  },
+  "linear-algebra": {
+    sections: [
+      {
+        heading: "The Same Vector Story Reappears Everywhere",
+        body: "Linear algebra becomes easier when you stop treating each application as new. A graphics transform, a neural network layer, a search-ranking update, and a physical simulation step all move vectors through structured transformations. The interpretation changes; the mathematics stays recognizable.",
+        bullets: ["Coordinate systems are choices of basis.", "Matrix products are composed transformations.", "High-dimensional geometry explains similarity search and embeddings."]
+      }
+    ],
+    references: [researchReferences.stanfordCore, researchReferences.cs2023]
+  },
+  "advanced-algorithms": {
+    sections: [
+      {
+        heading: "Paradigm Recognition",
+        body: "A mature algorithm designer first classifies the structure of the problem. Is there a shortest path? A dependency order? Repeated subproblems? A safe local choice? A flow of capacity? A hard search space needing approximation? The classification often determines the solution.",
+        bullets: ["Dynamic programming starts with state definition.", "Greedy algorithms start with a safety proof.", "Graph algorithms start by deciding what nodes and edges mean.", "Randomization starts by bounding failure probability."]
+      }
+    ],
+    references: [researchReferences.mitAlgorithms, researchReferences.mit006, researchReferences.cmuCore]
+  },
+  architecture: {
+    sections: [
+      {
+        heading: "The Cost Model Below Big O",
+        body: "Big O hides constants, but hardware often lives in those constants. Cache misses, branch prediction, vectorization, memory layout, and synchronization can dominate real performance. Architecture teaches why two algorithms with similar asymptotic cost can behave very differently on a real machine.",
+        bullets: ["Sequential memory access is usually friendlier to caches.", "Parallelism can be limited by communication and contention.", "The memory hierarchy is a performance model, not just a hardware diagram."]
+      }
+    ],
+    references: [researchReferences.stanfordCore, researchReferences.cmuCore]
+  },
+  os: {
+    sections: [
+      {
+        heading: "The OS as Illusion Manager",
+        body: "Operating systems create useful illusions: each process appears to own the CPU, memory appears private and contiguous, files appear stable, and devices appear uniform. The kernel maintains these illusions while enforcing protection and sharing finite hardware.",
+        bullets: ["Virtualization turns physical scarcity into manageable abstractions.", "Scheduling trades responsiveness, throughput, and fairness.", "Isolation is both a correctness and security mechanism."]
+      }
+    ],
+    references: [researchReferences.stanfordCore, researchReferences.cmuCore]
+  },
+  languages: {
+    sections: [
+      {
+        heading: "Language Design Is Tradeoff Design",
+        body: "A programming language chooses what errors to prevent, what patterns to make concise, what performance model to expose, and what mental model programmers should use. No language is universally best because domains reward different tradeoffs.",
+        bullets: ["Type systems move some checks before runtime.", "Memory management trades control against safety.", "Syntax matters because programs are read more often than they are written."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.stanfordCore]
+  },
+  databases: {
+    sections: [
+      {
+        heading: "Data Models Shape Questions",
+        body: "A relational database encourages thinking in tables, keys, constraints, joins, and transactions. A document store encourages nested records. A graph database encourages traversal. The data model affects not only storage but also what questions feel natural and efficient.",
+        bullets: ["Indexes speed reads but slow writes and consume space.", "Transactions protect invariants across changes.", "Query planners are compilers for data access."]
+      }
+    ],
+    references: [researchReferences.cs2023]
+  },
+  networks: {
+    sections: [
+      {
+        heading: "Protocols Are Layered Agreements",
+        body: "A network protocol is a social and technical agreement between machines. Layering works because each layer provides a service while hiding lower-level details. The danger is that hidden assumptions, such as reliable delivery or low latency, can leak into application design.",
+        bullets: ["Names, addresses, routes, and sessions are different abstractions.", "Reliability can be implemented above unreliable transport.", "Security must authenticate meaning, not just move bytes."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.stanfordCore]
+  },
+  "information-theory": {
+    sections: [
+      {
+        heading: "Information as Removed Uncertainty",
+        body: "A message is informative when it rules out possibilities. A predictable message carries little new information; a surprising message carries more. This view explains why compression, encryption, coding, and statistical learning are connected.",
+        bullets: ["Compression exploits predictability.", "Encryption tries to remove exploitable patterns.", "Error correction adds structured redundancy."]
+      }
+    ],
+    references: [researchReferences.mitMath]
+  },
+  "data-science": {
+    sections: [
+      {
+        heading: "The Dangerous Gap Between Data and Reality",
+        body: "Data is a measurement of reality, not reality itself. Every dataset has a collection process, missing cases, incentives, definitions, and errors. Advanced data work starts by asking how the data came to exist before asking what model to fit.",
+        bullets: ["Measurement choices define what can be learned.", "Selection bias can survive large sample sizes.", "Causal claims require assumptions beyond correlation."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.stanfordCore]
+  },
+  ai: {
+    sections: [
+      {
+        heading: "AI as Search, Representation, and Generalization",
+        body: "AI is not one technique. Classical AI emphasized search and symbolic representation. Machine learning emphasizes statistical generalization from data. Modern systems combine representation learning, optimization, retrieval, tools, feedback, and evaluation.",
+        bullets: ["A model compresses patterns from examples into parameters.", "Generalization is tested on cases not used for training.", "Evaluation must match the real task, not just a convenient benchmark."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.cmuCore]
+  },
+  verification: {
+    sections: [
+      {
+        heading: "Correctness Lives at Multiple Levels",
+        body: "A proof about an algorithm, a type checker guarantee, a unit test, and a production monitor are all evidence about correctness at different levels. High-assurance engineering combines evidence instead of expecting one method to cover every risk.",
+        bullets: ["Formal methods reason inside a model.", "Tests exercise concrete implementations.", "Monitoring checks behavior after deployment."]
+      }
+    ],
+    references: [researchReferences.mitMath, researchReferences.cs2023]
+  },
+  distributed: {
+    sections: [
+      {
+        heading: "The Fundamental Question of Agreement",
+        body: "Many distributed systems reduce to agreement under uncertainty. Which value is committed? Which node is leader? Which replica is current? Consensus protocols exist because communication delay can make failure indistinguishable from slowness.",
+        bullets: ["Replication improves availability but creates coordination problems.", "Consistency models define what reads are allowed to observe.", "Timeouts are guesses, not proof of failure."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.stanfordCore, researchReferences.cmuCore]
+  },
+  professional: {
+    sections: [
+      {
+        heading: "Ethics as Design Constraint",
+        body: "Ethics is not a final lecture after the technical work. It changes requirements, data collection, access control, monitoring, model evaluation, interface design, and deployment decisions. A system can be technically impressive and still professionally irresponsible.",
+        bullets: ["Ask who is affected and who can contest outcomes.", "Audit privacy, security, accessibility, and fairness early.", "Treat maintenance and incident response as part of the design."]
+      }
+    ],
+    references: [researchReferences.cs2023, researchReferences.cmuCore]
+  }
+};
+
+Object.entries(chapterEnhancements).forEach(([id, enhancement]) => {
+  const chapter = chapters.find((item) => item.id === id);
+  if (!chapter) return;
+  if (enhancement.summary) chapter.summary = enhancement.summary;
+  if (enhancement.concepts) chapter.concepts.push(...enhancement.concepts);
+  if (enhancement.sections) chapter.sections.push(...enhancement.sections);
+  if (enhancement.references) chapter.references = enhancement.references;
+});
+
 const book = document.querySelector("#book");
 const nav = document.querySelector("#chapterNav");
 const template = document.querySelector("#chapterTemplate");
@@ -934,6 +1161,15 @@ function createCodePanel(chapter, panel) {
   });
 
   panel.append(tabs, pre);
+}
+
+function createReferencesPanel(chapter, panel) {
+  if (!chapter.references || chapter.references.length === 0) return;
+  panel.classList.add("has-references");
+  const items = chapter.references
+    .map(([label, url]) => `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`)
+    .join("");
+  panel.innerHTML = `<h3>References and Further Study</h3><ul>${items}</ul>`;
 }
 
 function chapterText(chapter) {
@@ -1122,6 +1358,7 @@ function render() {
     audioButton.addEventListener("click", () => startAtChapter(index));
 
     createCodePanel(chapter, node.querySelector(".code-panel"));
+    createReferencesPanel(chapter, node.querySelector(".references-panel"));
     book.appendChild(node);
   });
 

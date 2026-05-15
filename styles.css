@@ -80,21 +80,52 @@ a {
   color: inherit;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .app-shell {
-  display: grid;
-  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  display: flex;
+  align-items: stretch;
   min-height: 100vh;
 }
 
 .sidebar {
   position: sticky;
   top: 0;
+  flex: 0 0 var(--sidebar-width);
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid var(--hairline);
   background: var(--surface);
   padding: 32px 22px 48px;
+  transition:
+    flex-basis 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.22s ease,
+    padding 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.22s ease,
+    transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.32s ease;
+}
+
+body.sidebar-narrow .sidebar {
+  flex-basis: 0;
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-right-color: transparent;
+  pointer-events: none;
 }
 
 .brand {
@@ -204,9 +235,107 @@ a {
 }
 
 .content {
+  flex: 1;
+  min-width: 0;
   width: min(1040px, 100%);
   margin: 0 auto;
   padding: 48px 48px 120px;
+}
+
+.content-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  margin: -8px 0 20px;
+  padding: 10px 0 14px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform 0.15s ease;
+}
+
+.sidebar-toggle:hover {
+  background: var(--surface-quiet);
+}
+
+.sidebar-toggle:active {
+  transform: scale(0.96);
+}
+
+.sidebar-toggle:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.sidebar-toggle-bars {
+  position: relative;
+  width: 18px;
+  height: 14px;
+  display: block;
+}
+
+.sidebar-toggle-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.22s ease;
+}
+
+.sidebar-toggle-bar:nth-child(1) {
+  top: 0;
+}
+
+.sidebar-toggle-bar:nth-child(2) {
+  top: 6px;
+}
+
+.sidebar-toggle-bar:nth-child(3) {
+  top: 12px;
+}
+
+.sidebar-toggle[aria-expanded="true"] .sidebar-toggle-bar:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.sidebar-toggle[aria-expanded="true"] .sidebar-toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+.sidebar-toggle[aria-expanded="true"] .sidebar-toggle-bar:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+.sidebar-backdrop {
+  display: none;
 }
 
 .hero {
@@ -593,10 +722,11 @@ p {
   right: 20px;
   bottom: 20px;
   z-index: 20;
-  display: grid;
-  width: min(300px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  justify-items: end;
+  align-items: flex-end;
+  width: min(300px, calc(100vw - 32px));
 }
 
 .reader-toggle {
@@ -1728,24 +1858,103 @@ pre {
 }
 
 @media (max-width: 980px) {
+  body.sidebar-drawer-open {
+    overflow: hidden;
+  }
+
+  /* Ignore desktop-only collapse flag while on narrow layout */
+  body.sidebar-narrow .sidebar {
+    flex-basis: auto;
+    min-width: unset;
+    opacity: 1;
+    overflow-y: auto;
+    pointer-events: auto;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    border-right-color: var(--hairline);
+  }
+
   .app-shell {
     display: block;
+    position: relative;
   }
 
   .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 45;
+    flex-basis: auto;
+    width: min(300px, calc(100vw - 56px));
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding-top: max(24px, env(safe-area-inset-top));
+    padding-bottom: 28px;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    border-right: 1px solid var(--hairline);
+    border-bottom: none;
+    box-shadow: none;
+    transform: translateX(-104%);
+    opacity: 1;
+    pointer-events: none;
+    overflow-y: auto;
+  }
+
+  body.sidebar-drawer-open .sidebar {
+    transform: translateX(0);
+    pointer-events: auto;
+    box-shadow: 12px 0 48px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    appearance: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: rgba(26, 26, 26, 0.36);
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    transition: opacity 0.28s ease;
+    backdrop-filter: blur(3px);
+  }
+
+  body.sidebar-drawer-open .sidebar-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .content-toolbar {
     position: static;
-    height: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--hairline);
-    padding: 24px 20px 28px;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: max(14px, env(safe-area-inset-top));
+    left: max(14px, env(safe-area-inset-left));
+    z-index: 60;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
   }
 
   .chapter-nav {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .content {
-    padding: 32px 22px 80px;
+    padding: 58px 22px 80px;
   }
 
   .hero {
@@ -1837,6 +2046,19 @@ pre {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .sidebar-toggle,
+  .sidebar-toggle-bar,
+  .sidebar-backdrop {
+    transition-duration: 0.01ms !important;
+  }
+
+  .sidebar-toggle:active {
+    transform: none;
+  }
+}
+
 @media print {
   html {
     scroll-behavior: auto;
@@ -1851,7 +2073,10 @@ pre {
   .reader-dock,
   .interactives-slot,
   .hero-actions .btn.secondary,
-  .audio-button {
+  .audio-button,
+  .sidebar-toggle,
+  .sidebar-backdrop,
+  .content-toolbar {
     display: none !important;
   }
 

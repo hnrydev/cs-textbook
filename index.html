@@ -12,8 +12,9 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
+    <button type="button" class="sidebar-backdrop" id="sidebarBackdrop" aria-label="Close navigation" tabindex="-1"></button>
     <div class="app-shell">
-      <aside class="sidebar" aria-label="Textbook navigation">
+      <aside class="sidebar" id="sidebarNav" aria-label="Textbook navigation">
         <div class="brand">
           <span class="brand-mark">CS</span>
           <div>
@@ -31,6 +32,23 @@
       </aside>
 
       <main class="content" id="main-content" tabindex="-1">
+        <div class="content-toolbar">
+          <button
+            type="button"
+            id="sidebarToggle"
+            class="sidebar-toggle"
+            aria-expanded="false"
+            aria-controls="sidebarNav"
+          >
+            <span class="sidebar-toggle-bars" aria-hidden="true">
+              <span class="sidebar-toggle-bar"></span>
+              <span class="sidebar-toggle-bar"></span>
+              <span class="sidebar-toggle-bar"></span>
+            </span>
+            <span class="visually-hidden">Toggle chapter navigation</span>
+          </button>
+        </div>
+
         <section class="hero" id="top">
           <div class="hero-copy">
             <p class="eyebrow">Structured like a degree map — readable in any order</p>
@@ -131,12 +149,6 @@
     </div>
 
     <aside class="reader-dock" aria-label="Audio reader controls">
-      <button class="reader-toggle" id="readerToggle" type="button" aria-expanded="true" title="Audio reader">
-        <svg class="speaker-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-          <path fill="currentColor" d="M11 5L6 9H2v6h4l5 4V5z"></path>
-          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        </svg>
-      </button>
       <div class="reader-panel" id="readerPanel">
         <div class="reader-header">
           <strong>Audio Reader</strong>
@@ -160,6 +172,12 @@
           <button id="readerStop" type="button">Stop</button>
         </div>
       </div>
+      <button class="reader-toggle" id="readerToggle" type="button" aria-expanded="true" title="Audio reader">
+        <svg class="speaker-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path fill="currentColor" d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
     </aside>
 
     <template id="chapterTemplate">

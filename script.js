@@ -1233,11 +1233,56 @@ const readerStatus = document.querySelector("#readerStatus");
 const readerPlay = document.querySelector("#readerPlay");
 const readerPause = document.querySelector("#readerPause");
 const readerStop = document.querySelector("#readerStop");
+const sidebarNav = document.querySelector("#sidebarNav");
+const sidebarToggle = document.querySelector("#sidebarToggle");
+const sidebarBackdrop = document.querySelector("#sidebarBackdrop");
 let voices = [];
 let readerItems = [];
 let currentReaderIndex = 0;
 let currentUtterance = null;
 let readerState = "idle";
+
+function sidebarDrawerLayout() {
+  return window.matchMedia("(max-width: 980px)").matches;
+}
+
+function syncSidebarAria() {
+  if (!sidebarToggle || !sidebarNav) return;
+  if (sidebarDrawerLayout()) {
+    document.body.classList.remove("sidebar-narrow");
+    const open = document.body.classList.contains("sidebar-drawer-open");
+    sidebarToggle.setAttribute("aria-expanded", String(open));
+    sidebarNav.setAttribute("aria-hidden", String(!open));
+    if (sidebarBackdrop) {
+      sidebarBackdrop.setAttribute("aria-hidden", String(!open));
+      if (!open && document.activeElement === sidebarBackdrop) sidebarBackdrop.blur();
+    }
+  } else {
+    document.body.classList.remove("sidebar-drawer-open");
+    const collapsed = document.body.classList.contains("sidebar-narrow");
+    sidebarToggle.setAttribute("aria-expanded", String(!collapsed));
+    sidebarNav.setAttribute("aria-hidden", String(collapsed));
+    if (sidebarBackdrop) {
+      sidebarBackdrop.setAttribute("aria-hidden", "true");
+      if (document.activeElement === sidebarBackdrop) sidebarBackdrop.blur();
+    }
+  }
+}
+
+function toggleSidebar() {
+  if (sidebarDrawerLayout()) {
+    document.body.classList.toggle("sidebar-drawer-open");
+  } else {
+    document.body.classList.toggle("sidebar-narrow");
+  }
+  syncSidebarAria();
+}
+
+function closeSidebarDrawer() {
+  if (!sidebarDrawerLayout()) return;
+  document.body.classList.remove("sidebar-drawer-open");
+  syncSidebarAria();
+}
 
 function slugTitle(chapter) {
   return `chapter-${chapter.id}`;
@@ -1671,6 +1716,14 @@ populateVoices();
 document.addEventListener("keydown", (event) => {
   const tag = event.target?.tagName;
   if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.key === "Escape") {
+    if (sidebarDrawerLayout() && document.body.classList.contains("sidebar-drawer-open")) {
+      event.preventDefault();
+      closeSidebarDrawer();
+      sidebarToggle?.focus();
+      return;
+    }
+  }
   if (event.key === "/" && tag !== "INPUT" && tag !== "TEXTAREA" && tag !== "SELECT") {
     event.preventDefault();
     searchInput?.focus();
@@ -1678,6 +1731,21 @@ document.addEventListener("keydown", (event) => {
 });
 
 searchInput.addEventListener("input", filterChapters);
+sidebarToggle?.addEventListener("click", toggleSidebar);
+sidebarBackdrop?.addEventListener("click", closeSidebarDrawer);
+nav?.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (link && sidebarDrawerLayout()) closeSidebarDrawer();
+});
+let sidebarResizeQueued = false;
+window.addEventListener("resize", () => {
+  if (sidebarResizeQueued) return;
+  sidebarResizeQueued = true;
+  requestAnimationFrame(() => {
+    sidebarResizeQueued = false;
+    syncSidebarAria();
+  });
+});
 document.addEventListener("scroll", updateActiveNav, { passive: true });
 readPageButton.addEventListener("click", () => startReading(0));
 readerPlay.addEventListener("click", () => startReading(Number(startSelect.value || 0)));
@@ -1711,3 +1779,4 @@ window.addEventListener("beforeunload", () => {
 
 updateActiveNav();
 updateReaderStatus();
+syncSidebarAria();
